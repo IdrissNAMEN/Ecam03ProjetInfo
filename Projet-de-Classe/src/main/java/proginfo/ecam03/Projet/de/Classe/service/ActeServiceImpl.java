@@ -1,26 +1,90 @@
 package proginfo.ecam03.Projet.de.Classe.service;
 
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import proginfo.ecam03.Projet.de.Classe.mapper.ActeMapper;
+import proginfo.ecam03.Projet.de.Classe.model.dto.ActeDto;
 import proginfo.ecam03.Projet.de.Classe.model.endity.Acte;
 import proginfo.ecam03.Projet.de.Classe.repository.ActeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.HashSet;
+
+
 @Service
+public class ActeServiceImpl implements IActe {
 
-public class ActeServiceImpl {
+    @Autowired
+    ActeRepository acteRepository;
 
-    private final ActeRepository acteRepository;
+    ActeMapper acteMapper = Mappers.getMapper(ActeMapper.class);
 
+    @Override
+    public int saveActe(ActeDto acteDto) {
+        if (acteRepository.findActeByNumero(acteDto.getNumero()).isPresent()) {
+            return 0;
+        }
 
-    public ActeServiceImpl(ActeRepository acteRepository) {
-        this.acteRepository = acteRepository;
+        return (int) acteRepository.save(acteMapper.toEntity(acteDto)).getId();
+
     }
 
-    public Acte save(Acte acte){
-        return acteRepository.save(acte);
+    @Override
+
+    public ActeDto searchActeByNumero(String numero) {
+
+        return acteMapper.toDto(acteRepository.findActeByNumero(numero).get());
     }
 
-    public List<Acte> getAllActe() {
-        return acteRepository.findAll();
+
+    @Override
+    public List<ActeDto> listActes() {
+        List<Acte> actes = acteRepository.findAll();
+
+        /* List<ActeDto> acteDtos = new ArrayList<ActeDto>();
+
+        for (Acte acte: actes){
+            ActeDto acteDto = acteMapper.toDto(acte);
+            acteDto.add(acteDto);
+        }*/
+
+        return actes.stream().map(acte -> acteMapper.toDto(acte))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public int deleteActe(String numero) {
+        acteRepository.deleteById(acteRepository.findActeByNumero(numero).get().getId());
+        return 1;
+    }
+
+
+    @Override
+    public List<ActeDto> searchActesByKeyword(String keyword) {
+
+
+        return acteRepository.findActeByNumeroOrNom(keyword, keyword).get().stream()
+                .map(acteMapper::toDto)
+                //map(acte1 -> acteMapper.toDto(acte))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public ActeDto updateActe(ActeDto acteDto) {
+
+        // recherche l'entité qui correspond à l'acte voulu update
+
+        Acte acte = acteRepository.findActeByNumero(acteDto.getNumero()).get();
+        acteMapper.copy(acteDto, acte);
+
+        return acteMapper.toDto(acteRepository.save(acte));
     }
 }
+
+

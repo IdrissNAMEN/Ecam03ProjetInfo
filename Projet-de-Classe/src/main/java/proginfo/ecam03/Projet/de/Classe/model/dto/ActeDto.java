@@ -17,10 +17,8 @@ public class ActeDto {
     private String prenom;
     private String dateNaissance;
     private String lieuNaissance;
-    private String lieuResidence;
     private String nomPrenomPere;
-    private String professionPere;
     private String nomPrenomMere;
-    private String professionMere;
+
 
 }
