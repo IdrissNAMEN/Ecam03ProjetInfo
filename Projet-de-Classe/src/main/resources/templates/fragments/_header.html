@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org"lang="en" >
+
+<th:block th:fragment="header">
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+        <div class="header-container d-flex align-items-center justify-content-between">
+            <div class="logo">
+                <!--h1 class="text-light"><a href="index.html"><span>ActAnnu</span></a></h1-->
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <a th:href="@{/}"><img src="@{/assets/img/logo-annarium.png.png}" alt="" class="img-fluid"></a>
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" th:href="@{/}">Accueil</a></li>
+                    <li><a class="nav-link scrollto" href="#about">A propos</a></li>
+                    <li class="dropdown"><a href="#"><span>Acte</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a th:href="@{/listedesactes}">Liste des actes</a></li>
+                            <li sec:authorize="isAuthenticated"><a th:href="@{/enregistreracteform}">Enregister un acte</a></li>
+                            <li><a th:href="@{/Rechercherform}">Rechercher un acte</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link scrollto" th:href="@{/demande.html"}>Demander un acte</a></li>
+                    <!--li><a class="getstarted scrollto" th:href="@{contact.html"}>Contact</a></li-->
+                    <li sec:authorize="isAuthenticated()"><a class="getstarted scrollto"  th:href="@{#}"><span th:text="${userName}">Estrella</span></a></li>
+                    <li sec:authorize="isAuthenticated()"><a class="getstarted scrollto"  th:href="@{/logout}">Se Deconnecter</a></li>
+                    <li sec:authorize="!isAuthenticated()"><a class="getstarted scrollto"  th:href="@{/login}">Se Connecter</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div><!-- End Header Container -->
+    </div>
+</header><!-- End Header -->
+
+</th:block>
+
+</html>
