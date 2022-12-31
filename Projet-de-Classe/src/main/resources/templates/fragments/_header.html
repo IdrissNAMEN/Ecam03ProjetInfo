@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org"lang="en" >
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
 
 <th:block th:fragment="header">
 
@@ -9,7 +9,7 @@
             <div class="logo">
                 <!--h1 class="text-light"><a href="index.html"><span>ActAnnu</span></a></h1-->
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <a th:href="@{/}"><img src="@{/assets/img/logo-annarium.png.png}" alt="" class="img-fluid"></a>
+                <a th:href="@{/}"><img th:src="@{/assets/img/logo-annarium.png.png}" alt="" class="img-fluid"></a>
             </div>
 
             <nav id="navbar" class="navbar">
@@ -25,7 +25,7 @@
                     </li>
                     <li><a class="nav-link scrollto" th:href="@{/demande.html"}>Demander un acte</a></li>
                     <!--li><a class="getstarted scrollto" th:href="@{contact.html"}>Contact</a></li-->
-                    <li sec:authorize="isAuthenticated()"><a class="getstarted scrollto"  th:href="@{#}"><span th:text="${userName}">Estrella</span></a></li>
+                    <li sec:authorize="isAuthenticated()"><a class="getstarted scrollto"  th:href="@{#}"><span th:text="${userName}">Kakà</span></a></li>
                     <li sec:authorize="isAuthenticated()"><a class="getstarted scrollto"  th:href="@{/logout}">Se Deconnecter</a></li>
                     <li sec:authorize="!isAuthenticated()"><a class="getstarted scrollto"  th:href="@{/login}">Se Connecter</a></li>
                 </ul>
