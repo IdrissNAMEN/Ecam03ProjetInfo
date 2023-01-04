@@ -23,7 +23,7 @@
                             <li><a th:href="@{/Rechercherform}">Rechercher un acte</a></li>
                         </ul>
                     </li>
-                    <li><a class="nav-link scrollto" th:href="@{/demande.html"}>Demander un acte</a></li>
+                    <li><a class="nav-link scrollto" th:href="@{/demande.html}">Demander un acte</a></li>
                     <!--li><a class="getstarted scrollto" th:href="@{contact.html"}>Contact</a></li-->
                     <li sec:authorize="isAuthenticated()"><a class="getstarted scrollto"  th:href="@{#}"><span th:text="${userName}">Kakà</span></a></li>
                     <li sec:authorize="isAuthenticated()"><a class="getstarted scrollto"  th:href="@{/logout}">Se Deconnecter</a></li>
