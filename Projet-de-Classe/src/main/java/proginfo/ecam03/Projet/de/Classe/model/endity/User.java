@@ -23,9 +23,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
+    private long user_id;
+
     @Email(message = "email")
     @NotEmpty(message = "*please provide an email")
+    @Column(name = "email")
     private String email;
+
     @Column(name = "password")
     private String password;
     @Column(name = "name")

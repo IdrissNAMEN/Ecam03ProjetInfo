@@ -99,8 +99,8 @@ public class ActeController {
 
 
 
-    @GetMapping("/enregistreracte")
-    public String enregistrerActe(@ModelAttribute ActeDto acteDto, Model model){
+    @PostMapping("/enregistreracte")
+    public String enregistrerActe(@ModelAttribute ActeDto acteDto){
         ActeController.log.info("enregister-acte");
         //appel de la couche service ou metier injetée pour enregister un materiel
         iActe.saveActe(acteDto);
