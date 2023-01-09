@@ -1,6 +1,7 @@
-package proginfo.ecam03.Projet.de.Classe.model.endity;
+package proginfo.ecam03.Projet.de.Classe.model.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Data
 public class Acte implements Serializable {
 

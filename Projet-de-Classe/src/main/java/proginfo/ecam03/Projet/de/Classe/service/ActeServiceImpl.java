@@ -1,18 +1,15 @@
 package proginfo.ecam03.Projet.de.Classe.service;
 
-import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proginfo.ecam03.Projet.de.Classe.mapper.ActeMapper;
 import proginfo.ecam03.Projet.de.Classe.model.dto.ActeDto;
-import proginfo.ecam03.Projet.de.Classe.model.endity.Acte;
+import proginfo.ecam03.Projet.de.Classe.model.entity.Acte;
 import proginfo.ecam03.Projet.de.Classe.repository.ActeRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.HashSet;
 
 
 @Service
